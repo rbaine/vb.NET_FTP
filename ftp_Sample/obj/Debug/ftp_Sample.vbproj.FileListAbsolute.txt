@@ -1,0 +1,9 @@
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\bin\Debug\ftp_Sample.exe.config
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\bin\Debug\ftp_Sample.exe
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\bin\Debug\ftp_Sample.pdb
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\bin\Debug\ftp_Sample.xml
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.Resources.resources
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.vbproj.GenerateResource.Cache
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.exe
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.xml
+C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.pdb

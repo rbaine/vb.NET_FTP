@@ -67,13 +67,19 @@ Public Class FTP
         Dim ftpStream As Stream = Nothing
         Dim ftpResp As FtpWebResponse = Nothing
         Dim strFilename As String = ""
+        Dim Uri As String = ""
+
+        Uri = "ftp://" + m_HOST + "//"
+        If Remote_Path.Length <> 0 Then
+            Uri = Uri + Remote_Path + "/"
+        End If
 
         Try
-            reqFTP = DirectCast(FtpWebRequest.Create(New Uri("ftp://" + m_HOST + "/" + Remote_Path)), FtpWebRequest)
+            reqFTP = FtpWebRequest.Create(Uri)
             reqFTP.Method = WebRequestMethods.Ftp.ListDirectory
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
+            ftpResp = reqFTP.GetResponse()
 
-            ftpResp = DirectCast(reqFTP.GetResponse(), FtpWebResponse)
             ftpStream = ftpResp.GetResponseStream()
             Dim reader As New StreamReader(ftpStream)
 
@@ -107,25 +113,25 @@ Public Class FTP
         Dim ftpResp As FtpWebResponse = Nothing
         Dim uri As String = ""
 
-        uri = "ftp://" + m_HOST + "/"
-
+        uri = "ftp://" + m_HOST + "//"
         If Remote_Path.Length <> 0 Then
             uri = uri + Remote_Path + "/"
         End If
         uri = uri + FileName
 
 
+
         Try
-            reqFTP = DirectCast(FtpWebRequest.Create(New Uri(uri)), FtpWebRequest)
+            'reqFTP = DirectCast(FtpWebRequest.Create(New Uri("ftp://" + m_HOST + "/" + Remote_Path + "/" + FileName)), FtpWebRequest)
+            reqFTP = FtpWebRequest.Create(uri)
             reqFTP.Method = WebRequestMethods.Ftp.DownloadFile
             reqFTP.UseBinary = True
             reqFTP.UsePassive = True
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
             ftpResp = DirectCast(reqFTP.GetResponse(), FtpWebResponse)
             ftpStream = ftpResp.GetResponseStream()
-            Dim outputStream As New FileStream(Local_Path + "\" + FileName, FileMode.Create)
 
-
+            Dim outputStream As New FileStream(Path.Combine(Local_Path, FileName), FileMode.Create)
             Dim cl As Long = ftpResp.ContentLength
             Dim bufferSize As Integer = 2048
             Dim readCount As Integer

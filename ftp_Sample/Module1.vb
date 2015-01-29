@@ -11,9 +11,11 @@ Module Module1
         f.HOST = "evolution.altmanplants.com"
         f.FTP_SignOn("evo", "password")
 
-        If f.FTP_List("/rim/evo/evoupdate") Then
+
+        If f.FTP_List("rim/evo/evoupdate") Then
             Dim s As String
             For Each s In f.Filelist
+                Console.WriteLine(s)
                 If Right(s, 3) = "txt" Then
                     Console.WriteLine(s)
                     If f.FTP_Download("C:\Users\rbaine\Desktop", "rim/evo/evoUpdate", s) Then

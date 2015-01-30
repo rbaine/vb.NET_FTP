@@ -9,6 +9,7 @@ Public Class FTP
     Private m_Password As String
     Private m_Files As New List(Of String)
     Private m_ErrMessage As String = ""
+    Private m_PassiveMode As Boolean = True
 
     Public Sub New()
     End Sub
@@ -37,6 +38,15 @@ Public Class FTP
         End Get
         Set(ByVal value As String)
             m_Password = value
+        End Set
+    End Property
+
+    Public Property PassiveMode() As Boolean
+        Get
+            Return m_PassiveMode
+        End Get
+        Set(value As Boolean)
+            m_PassiveMode = value
         End Set
     End Property
 
@@ -79,6 +89,7 @@ Public Class FTP
             reqFTP = FtpWebRequest.Create(Uri)
             reqFTP.Method = WebRequestMethods.Ftp.ListDirectory
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
+            reqFTP.UsePassive = m_PassiveMode
             ftpResp = reqFTP.GetResponse()
 
             ftpStream = ftpResp.GetResponseStream()
@@ -127,7 +138,7 @@ Public Class FTP
             reqFTP = FtpWebRequest.Create(uri)
             reqFTP.Method = WebRequestMethods.Ftp.DownloadFile
             reqFTP.UseBinary = True
-            reqFTP.UsePassive = True
+            reqFTP.UsePassive = m_PassiveMode
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
             ftpResp = DirectCast(reqFTP.GetResponse(), FtpWebResponse)
             ftpStream = ftpResp.GetResponseStream()
@@ -176,7 +187,7 @@ Public Class FTP
             reqFTP = DirectCast(FtpWebRequest.Create(New Uri(uri)), FtpWebRequest)
             reqFTP.Method = WebRequestMethods.Ftp.DeleteFile
             reqFTP.UseBinary = True
-            reqFTP.UsePassive = True
+            reqFTP.UsePassive = m_PassiveMode
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
             ftpResp = DirectCast(reqFTP.GetResponse(), FtpWebResponse)
 
@@ -214,7 +225,7 @@ Public Class FTP
             reqFTP = DirectCast(FtpWebRequest.Create(New Uri(uri)), FtpWebRequest)
             reqFTP.Method = WebRequestMethods.Ftp.UploadFile
             reqFTP.UseBinary = True
-            reqFTP.UsePassive = True
+            reqFTP.UsePassive = m_PassiveMode
             reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
 
             fileInfo = New FileInfo(My.Computer.FileSystem.CombinePath(Local_Path, FileName))

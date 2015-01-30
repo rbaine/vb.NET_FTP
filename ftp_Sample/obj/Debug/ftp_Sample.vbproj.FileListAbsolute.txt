@@ -7,3 +7,12 @@ C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.vbproj.Generate
 C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.exe
 C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.xml
 C:\Source_Code\dotNET\ftp_Sample\ftp_Sample\obj\Debug\ftp_Sample.pdb
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\bin\Debug\ftp_Sample.exe.config
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\obj\Debug\ftp_Sample.exe
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\obj\Debug\ftp_Sample.xml
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\obj\Debug\ftp_Sample.pdb
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\bin\Debug\ftp_Sample.exe
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\bin\Debug\ftp_Sample.pdb
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\bin\Debug\ftp_Sample.xml
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\obj\Debug\ftp_Sample.Resources.resources
+C:\Users\chad\Source\Repos\vb.NET_FTP\ftp_Sample\obj\Debug\ftp_Sample.vbproj.GenerateResource.Cache

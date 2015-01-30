@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.Net
 Imports System.IO
+Imports System.Text
 
 Public Class FTP
     Private m_HOST As String
@@ -152,6 +153,91 @@ Public Class FTP
         End Try
     End Function
 
+    Public Function FTP_Delete(Remote_Path As String, FileName As String) As Boolean
 
+        Dim reqFTP As FtpWebRequest = Nothing
+        Dim ftpResp As FtpWebResponse = Nothing
+        Dim uri As String = ""
+
+        uri = "ftp://" + m_HOST + "/"
+
+        If Remote_Path.Length <> 0 Then
+            uri = uri + Remote_Path + "/"
+        End If
+        uri = uri + FileName
+
+        Try
+            reqFTP = DirectCast(FtpWebRequest.Create(New Uri(uri)), FtpWebRequest)
+            reqFTP.Method = WebRequestMethods.Ftp.DeleteFile
+            reqFTP.UseBinary = True
+            reqFTP.UsePassive = True
+            reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
+            ftpResp = DirectCast(reqFTP.GetResponse(), FtpWebResponse)
+
+            ftpResp.Close()
+            m_ErrMessage = ""
+            FTP_Delete = True
+        Catch ex As Exception
+            m_ErrMessage = ex.Message.ToString
+            FTP_Delete = False
+        End Try
+    End Function
+
+    Public Function FTP_Upload(Local_Path As String, Remote_Path As String, FileName As String) As Boolean
+
+        Dim reqFTP As FtpWebRequest = Nothing
+        Dim ftpStream As Stream = Nothing
+        Dim uri As String = ""
+        Dim inputStream As StreamReader = Nothing
+        Dim fileContents As Byte() = Nothing
+        Dim fileInfo As FileInfo = Nothing
+        Dim fileStream As FileStream = Nothing
+        Dim bufferSize As Integer = 0
+        Dim readCount As Long = 0
+        Dim buffer As Byte() = Nothing
+
+        uri = "ftp://" + m_HOST + "/"
+
+        If Remote_Path.Length <> 0 Then
+            uri = uri + Remote_Path + "/"
+        End If
+        uri = uri + FileName
+
+
+        Try
+            reqFTP = DirectCast(FtpWebRequest.Create(New Uri(uri)), FtpWebRequest)
+            reqFTP.Method = WebRequestMethods.Ftp.UploadFile
+            reqFTP.UseBinary = True
+            reqFTP.UsePassive = True
+            reqFTP.Credentials = New NetworkCredential(m_UserID, m_Password)
+
+            fileInfo = New FileInfo(My.Computer.FileSystem.CombinePath(Local_Path, FileName))
+            fileStream = fileInfo.OpenRead
+            bufferSize = 2048
+            buffer = New Byte(bufferSize - 1) {}
+            ftpStream = reqFTP.GetRequestStream
+            readCount = fileStream.Read(buffer, 0, bufferSize)
+            While readCount > 0
+                ftpStream.Write(buffer, 0, readCount)
+                readCount = fileStream.Read(buffer, 0, bufferSize)
+            End While
+
+            ftpStream.Close()
+            fileStream.Close()
+            m_ErrMessage = ""
+            FTP_Upload = True
+        Catch ex As Exception
+            If fileStream IsNot Nothing Then
+                fileStream.Close()
+                fileStream.Dispose()
+            End If
+            If ftpStream IsNot Nothing Then
+                ftpStream.Close()
+                ftpStream.Dispose()
+            End If
+            m_ErrMessage = ex.Message.ToString
+            FTP_Upload = False
+        End Try
+    End Function
 
 End Class

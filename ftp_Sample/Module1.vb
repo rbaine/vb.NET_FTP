@@ -1,5 +1,6 @@
 ﻿Imports System.Net
 Imports System.IO
+Imports FTP
 
 Module Module1
 
@@ -8,7 +9,7 @@ Module Module1
         Dim user As String = ""
         Dim pwd As String = ""
         Dim path As String = "/rim/evo/evoupdate/ftptest"
-        Dim f = New FTP
+        Dim f = New FTP.FTP
         Dim files As New List(Of String)
 
         Call GetParams(host, user, pwd, path)

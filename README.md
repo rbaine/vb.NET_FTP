@@ -1,7 +1,7 @@
 # vb.NET_FTP
 Sample FTP functions in vb.net
 
-ftp.vb is a very simple wrapper for the .NET WEBREQUEST object.
+ftp.vb is a very simple wrapper for the .NET WEBREQUEST object.  To use this wrapper, simply include the ftp.vb file in your project.
 
 This class will allow you to create an FTP object and perform the basic FTP file operations. 
 * LIST (NLST)
@@ -12,7 +12,7 @@ This class will allow you to create an FTP object and perform the basic FTP file
 Each function returns TRUE or FALSE and in the event that an error occurs, the last error is stored in myFTP.ErrMessage
 
 ```
-Imports Symbience.Utilities.FTP
+Imports Symbience.Utilities.FTP   "only needed if using DLL"
 ...
 Dim myFTP = new Symbience.Utilities.FTP
 

@@ -1,6 +1,6 @@
 ﻿Imports System.Net
 Imports System.IO
-Imports FTP
+Imports Symbience.Utilities.FTP
 
 Module Module1
 
@@ -9,7 +9,7 @@ Module Module1
         Dim user As String = ""
         Dim pwd As String = ""
         Dim path As String = "/rim/evo/evoupdate/ftptest"
-        Dim f = New FTP.FTP
+        Dim f = New Symbience.Utilities.FTP
         Dim files As New List(Of String)
 
         Call GetParams(host, user, pwd, path)
@@ -62,10 +62,10 @@ Module Module1
 
         Console.WriteLine("Host: " & host)
 
-        Console.Write("UserId:")
+        Console.Write("UserId: ")
         user = Console.ReadLine
 
-        Console.Write("Password:")
+        Console.Write("Password: ")
         Do
             kpress = Console.ReadKey(True)
             If kpress.Key = ConsoleKey.Enter Then
@@ -77,7 +77,7 @@ Module Module1
         Loop
         Console.WriteLine("")
 
-        Console.WriteLine("Use this path?" & path)
+        Console.WriteLine("Use this path? " & path)
         Console.Write("Y")
 
         Console.CursorLeft = 0
